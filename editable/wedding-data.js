@@ -10,8 +10,8 @@ window.WEDDING_DATA = {
     brideFull: "Parul Bambotra",
     groomFull: "Ronit Uniyal",
     brideParents: "D/o Smt. Kirti Bambotra & Late Sh. Babulal Bambotra",
-    groomParents: "Son of Smt. Neeta Uniyal & Sh. Yamuna Prasad Uniyal (Grandson of Smt. Purni Devi & Late Sh. Mahesha Nand Uniyal)",
-    hashtag: "#ParulWedsRonit",
+    groomParents: "Son of Smt. Neeta Uniyal & Sh. Yamuna Prasad Uniyal",
+    hashtag: "#Parnit",
   },
 
   wedding: {
@@ -21,8 +21,10 @@ window.WEDDING_DATA = {
   },
 
   verse: {
-    hindi: "॥ श्री गणेशाय नमः ॥",
-    text: "Na koi vaada likha tha, na koi manzil tay thi… bas saath chalte rahe, aur raasta khoobsurat hota gaya.",
+    hindi: "॥ ॐ नमः शिवाय, शिव जी सदा सहाय ॥\n॥ ॐ नमः शिवाय, गुरुजी सदा सहाय ॥",
+    mantra1: "Om Namah Shivay, Shiv ji Sada Sahay",
+    mantra2: "Om Namah Shivay, Guruji Sada Sahay",
+    text: "Together with their families, Parul & Ronit invite you to celebrate their wedding and shower your blessings on their sacred new beginning.",
   },
 
   venue: {
@@ -52,14 +54,6 @@ window.WEDDING_DATA = {
       mapsUrl: "https://maps.app.goo.gl/KY1LEUN6NFpQLTK98?g_st=iw",
     },
     {
-      name: "Departure of Barat",
-      icon: "sparkles",
-      date: "Friday, 20th November 2026",
-      time: "6:00 PM",
-      venue: "Royal by Meraki, Block-A, Sector-15, Rohini, Delhi",
-      note: "Barat will depart to Royal By Meraki, Sector-15, Rohini and proceed to wedding venue.",
-    },
-    {
       name: "Wedding Ceremony",
       icon: "heart",
       date: "Friday, 20th November 2026",
@@ -68,14 +62,6 @@ window.WEDDING_DATA = {
       note: "Baraat, Jaimala & sacred Pheras — the moment two souls become one.",
       mapsUrl: "https://maps.app.goo.gl/oZbs7RZWSEV7nCW89?g_st=ic",
     },
-    {
-      name: "Bride Groom Welcome",
-      icon: "sparkles",
-      date: "Saturday, 21st November 2026",
-      time: "6:00 AM",
-      venue: "Residence: H. No. 293, SFS Golden Jubilee Apartment, Sector-11, Rohini, Delhi-110085",
-      note: "Warm welcome of the newly wedded couple with blessings at residence.",
-    },
   ],
 
   familyNote: "With love, the Uniyal & Bambotra families",
@@ -83,7 +69,7 @@ window.WEDDING_DATA = {
   images: {
     couple: "./editable/assets/couple.png",
     heroBg: "./editable/assets/hero-bg.png",
-    ganesha: "./editable/assets/ganesha.png",
+    ganesha: "./editable/assets/shiv-parvati.png",
     diya: "./editable/assets/diya.png",
     mandala: "./editable/assets/mandala.png",
     footerGarland: "./editable/assets/footer-garland.png",
