@@ -222,12 +222,13 @@ footer p.font-script {
   transform: translateY(-1px);
 }
 
+
 /* --- Event Date Card Fitting Fix --- */
-.rounded-2xl {
+.event-card {
   overflow: visible !important;
 }
 
-.rounded-2xl > div:first-child {
+.event-card > div:first-child {
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
@@ -235,14 +236,14 @@ footer p.font-script {
 }
 
 @media (min-width: 640px) {
-  .rounded-2xl > div:first-child {
+  .event-card > div:first-child {
     flex-direction: row !important;
     align-items: baseline !important;
     justify-content: space-between !important;
   }
 }
 
-.rounded-2xl > div:first-child > span {
+.event-card > div:first-child > span {
   display: inline-block !important;
   font-size: 10px !important;
   line-height: 1.4 !important;
@@ -252,5 +253,50 @@ footer p.font-script {
   max-width: 100% !important;
   white-space: normal !important;
   word-break: normal !important;
-  margin-top: 0 !important;
+}
+
+/* --- Countdown Timer Digits (Big, Bold & Radiant) --- */
+.countdown-card {
+  width: 76px !important;
+  min-height: 98px !important;
+  padding: 0.75rem 0.25rem !important;
+  border: 1px solid rgba(217, 164, 65, 0.45) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 0 14px rgba(217, 164, 65, 0.08) !important;
+}
+
+@media (min-width: 640px) {
+  .countdown-card {
+    width: 88px !important;
+    min-height: 108px !important;
+    padding: 0.85rem 0.5rem !important;
+  }
+}
+
+.countdown-card .relative {
+  height: 2.85rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: visible !important;
+}
+
+.countdown-digit {
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.02em !important;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 3px rgba(255, 230, 150, 0.7)) !important;
+}
+
+@media (min-width: 640px) {
+  .countdown-digit {
+    font-size: 2.9rem !important;
+  }
+}
+
+.countdown-card > span:last-child {
+  font-size: 10px !important;
+  letter-spacing: 0.25em !important;
+  color: #d9b36a !important;
+  margin-top: 0.25rem !important;
 }
