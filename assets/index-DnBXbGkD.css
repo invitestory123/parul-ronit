@@ -221,3 +221,36 @@ footer p.font-script {
   border-color: rgba(217, 164, 65, 0.85);
   transform: translateY(-1px);
 }
+
+/* --- Event Date Card Fitting Fix --- */
+.rounded-2xl {
+  overflow: visible !important;
+}
+
+.rounded-2xl > div:first-child {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 0.2rem !important;
+}
+
+@media (min-width: 640px) {
+  .rounded-2xl > div:first-child {
+    flex-direction: row !important;
+    align-items: baseline !important;
+    justify-content: space-between !important;
+  }
+}
+
+.rounded-2xl > div:first-child > span {
+  display: inline-block !important;
+  font-size: 10px !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.14em !important;
+  color: #d9b36a !important;
+  text-transform: uppercase !important;
+  max-width: 100% !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  margin-top: 0 !important;
+}
