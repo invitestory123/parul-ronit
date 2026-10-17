@@ -300,3 +300,28 @@ footer p.font-script {
   color: #d9b36a !important;
   margin-top: 0.25rem !important;
 }
+
+/* Seamless Gate Door Images */
+.gate-door-img-left {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100vw !important;
+  max-width: none !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+.gate-door-img-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100vw !important;
+  max-width: none !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}

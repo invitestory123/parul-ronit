@@ -69,6 +69,7 @@ window.WEDDING_DATA = {
   images: {
     couple: "./editable/assets/couple.png",
     heroBg: "./editable/assets/hero-bg.png",
+    gateBg: "./editable/assets/hero-bg.png",
     ganesha: "./editable/assets/shiv-parvati.png",
     diya: "./editable/assets/diya.png",
     mandala: "./editable/assets/mandala.png",
