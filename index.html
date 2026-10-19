@@ -26,8 +26,79 @@
     <meta name="twitter:image" content="external/media.invitestory.in/rajmahal-palace/assets/og-image.jpg" />
     <!-- ▲▲ PER-CUSTOMER ▲▲ -->
     <script src="./editable/wedding-data.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <script type="module" crossorigin src="assets/index-OIk1B1Dk.js"></script>
     <link rel="stylesheet" crossorigin href="assets/index-DnBXbGkD.css">
+    <script>
+      (function() {
+        function initMusic() {
+          var data = window.WEDDING_DATA;
+          if (!data || !data.music || !data.music.src) return;
+          var audio = document.createElement('audio');
+          audio.id = 'weddingBgm';
+          audio.src = data.music.src;
+          audio.loop = true;
+          audio.preload = 'auto';
+          document.body.appendChild(audio);
+
+          var btn = document.createElement('button');
+          btn.id = 'bgmToggle';
+          btn.type = 'button';
+          btn.className = 'bgm-floating-btn';
+          btn.setAttribute('aria-label', 'Toggle background music');
+          btn.setAttribute('title', data.music.title || 'Wedding Music');
+          btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle><path d="M12 2a10 10 0 0 1 10 10"></path></svg>';
+          document.body.appendChild(btn);
+
+          function playAudio() {
+            var p = audio.play();
+            if (p && p.then) {
+              p.then(function() {
+                btn.classList.add('playing');
+              }).catch(function() {});
+            }
+          }
+
+          function pauseAudio() {
+            audio.pause();
+            btn.classList.remove('playing');
+          }
+
+          btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (audio.paused) {
+              playAudio();
+            } else {
+              pauseAudio();
+            }
+          });
+
+          window.__playWeddingMusic = function() {
+            if (data.music && data.music.autoplay !== false) {
+              playAudio();
+            }
+          };
+
+          // Also allow any first user touch/click on page to unlock if gate already passed
+          var unlockOnce = function() {
+            if (window.__weddingMusicUnlocked) return;
+            window.__weddingMusicUnlocked = true;
+            if (audio.paused && data.music.autoplay !== false) {
+              playAudio();
+            }
+            window.removeEventListener('click', unlockOnce);
+            window.removeEventListener('touchstart', unlockOnce);
+          };
+          window.addEventListener('click', unlockOnce, { once: true });
+          window.addEventListener('touchstart', unlockOnce, { once: true });
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initMusic);
+        } else {
+          initMusic();
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

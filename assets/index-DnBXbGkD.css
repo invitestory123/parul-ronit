@@ -325,3 +325,101 @@ footer p.font-script {
   object-fit: cover !important;
   object-position: center !important;
 }
+
+/* --- Sacred Mantra & Typography Enhancements --- */
+.hero-mantra-container {
+  margin-top: 0.35rem !important;
+  margin-bottom: 0.65rem !important;
+  padding: 0.4rem 1.25rem !important;
+  max-width: 94vw !important;
+  text-align: center !important;
+  position: relative !important;
+}
+
+.hero-mantra-container::before {
+  content: "✦" !important;
+  display: block !important;
+  font-size: 0.75rem !important;
+  color: #d9a441 !important;
+  opacity: 0.75 !important;
+  margin-bottom: 0.35rem !important;
+  letter-spacing: 0.3em !important;
+}
+
+.hero-mantra-container::after {
+  content: "" !important;
+  display: block !important;
+  width: 60px !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, #d9a441, transparent) !important;
+  margin: 0.5rem auto 0 auto !important;
+  opacity: 0.7 !important;
+}
+
+.hero-mantra-hindi {
+  font-family: 'Rozha One', 'Noto Serif Devanagari', 'Martel', serif !important;
+  font-size: clamp(1rem, 4vw, 1.35rem) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  line-height: 1.65 !important;
+  background: linear-gradient(115deg, #fff9e6 0%, #fae29f 30%, #ffd978 70%, #fff9e6 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 4px rgba(217, 164, 65, 0.5)) !important;
+  display: block !important;
+}
+
+.hero-mantra-english {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: clamp(0.85rem, 3.2vw, 1.05rem) !important;
+  font-style: italic !important;
+  letter-spacing: 0.15em !important;
+  color: #ffd978 !important;
+  opacity: 0.9 !important;
+  display: block !important;
+  margin-top: 0.2rem !important;
+}
+
+/* Floating Audio Background Music Player */
+.bgm-floating-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 95;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(217, 164, 65, 0.55);
+  background: rgba(22, 4, 8, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(217, 164, 65, 0.25);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffd978;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  user-select: none;
+}
+
+.bgm-floating-btn:hover {
+  transform: scale(1.08);
+  background: rgba(35, 8, 14, 0.9);
+  border-color: rgba(217, 164, 65, 0.9);
+}
+
+.bgm-floating-btn:active {
+  transform: scale(0.92);
+}
+
+.bgm-floating-btn.playing svg {
+  animation: bgm-spin 4.5s linear infinite;
+}
+
+@keyframes bgm-spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

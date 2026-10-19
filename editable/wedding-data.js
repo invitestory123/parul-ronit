@@ -24,6 +24,7 @@ window.WEDDING_DATA = {
     hindi: "॥ ॐ नमः शिवाय, शिव जी सदा सहाय ॥\n॥ ॐ नमः शिवाय, गुरुजी सदा सहाय ॥",
     mantra1: "Om Namah Shivay, Shiv ji Sada Sahay",
     mantra2: "Om Namah Shivay, Guruji Sada Sahay",
+    showEnglishHero: false, // Set to true to also display the English mantra under the Shiv-Parvati motif
     text: "Together with their families, Parul & Ronit invite you to celebrate their wedding and shower your blessings on their sacred new beginning.",
   },
 
@@ -32,6 +33,15 @@ window.WEDDING_DATA = {
     address: "A-29, GT Karnal Road Industrial Area, Opposite Mahendru Enclave, Gujranwala Town, Delhi 110033",
     mapsQuery: "The Meraki A-29 GT Karnal Road Industrial Area Opposite Mahendru Enclave Gujranwala Town Delhi 110033",
     mapsUrl: "https://maps.app.goo.gl/oZbs7RZWSEV7nCW89?g_st=ic",
+    showInHero: false,    // Venue repetition removed from 1st page Hero card
+    showInScratch: false, // Venue repetition removed from 2nd page Scratch card
+    showSection: true,    // End venue map & calendar section
+  },
+
+  music: {
+    src: "./editable/assets/bgm.mp3",
+    title: "Sacred Wedding Music",
+    autoplay: true,
   },
 
   events: [
