@@ -414,6 +414,11 @@ footer p.font-script {
   transform: scale(0.92);
 }
 
+.bgm-floating-btn.playing {
+  border-color: rgba(217, 164, 65, 0.9);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 20px rgba(217, 164, 65, 0.45);
+}
+
 .bgm-floating-btn.playing svg {
   animation: bgm-spin 4.5s linear infinite;
 }
@@ -429,14 +434,16 @@ footer p.font-script {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
-  gap: 0.35rem !important;
-  margin: 0.25rem 0 0.5rem 0 !important;
+  gap: 0.25rem !important;
+  margin: 0.2rem 0 0.5rem 0 !important;
   text-align: center !important;
+  position: relative !important;
+  z-index: 10 !important;
 }
 
 .gate-mantra-hindi {
   font-family: 'Rozha One', 'Noto Serif Devanagari', 'Martel', serif !important;
-  font-size: clamp(0.95rem, 4vw, 1.35rem) !important;
+  font-size: clamp(1rem, 4.2vw, 1.35rem) !important;
   font-weight: 600 !important;
   letter-spacing: 0.06em !important;
   background: linear-gradient(115deg, #fff9e6 0%, #fae29f 30%, #ffd978 70%, #fff9e6 100%) !important;
@@ -449,11 +456,13 @@ footer p.font-script {
 
 .gate-mantra-english {
   font-family: 'Cormorant Garamond', Georgia, serif !important;
-  font-size: clamp(0.85rem, 3.4vw, 1.1rem) !important;
+  font-size: clamp(0.95rem, 3.8vw, 1.25rem) !important;
   font-weight: 600 !important;
-  letter-spacing: 0.22em !important;
-  text-transform: uppercase !important;
-  color: #fae29f !important;
-  text-shadow: 0 0 10px rgba(217, 164, 65, 0.4), 0 2px 4px rgba(0, 0, 0, 0.8) !important;
+  font-style: italic !important;
+  letter-spacing: 0.12em !important;
+  text-transform: none !important;
+  color: #fcedb4 !important;
+  text-shadow: 0 0 12px rgba(217, 164, 65, 0.55), 0 2px 4px rgba(0, 0, 0, 0.9) !important;
   display: block !important;
 }
+

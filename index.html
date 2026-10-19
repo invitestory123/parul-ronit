@@ -27,8 +27,8 @@
     <!-- ▲▲ PER-CUSTOMER ▲▲ -->
     <script src="./editable/wedding-data.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="assets/index-OIk1B1Dk.js"></script>
-    <link rel="stylesheet" crossorigin href="assets/index-DnBXbGkD.css">
+    <script type="module" crossorigin src="assets/index-OIk1B1Dk.js?v=2"></script>
+    <link rel="stylesheet" crossorigin href="assets/index-DnBXbGkD.css?v=2">
     <script>
       (function() {
         function initMusic() {
@@ -55,7 +55,9 @@
             if (p && p.then) {
               p.then(function() {
                 btn.classList.add('playing');
-              }).catch(function() {});
+              }).catch(function(err) {
+                console.log('Audio autoplay awaiting user interaction');
+              });
             }
           }
 
@@ -79,7 +81,7 @@
             }
           };
 
-          // Also allow any first user touch/click on page to unlock if gate already passed
+          // Also allow any first user touch/click/pointer on page to unlock audio
           var unlockOnce = function() {
             if (window.__weddingMusicUnlocked) return;
             window.__weddingMusicUnlocked = true;
@@ -88,9 +90,11 @@
             }
             window.removeEventListener('click', unlockOnce);
             window.removeEventListener('touchstart', unlockOnce);
+            window.removeEventListener('pointerdown', unlockOnce);
           };
-          window.addEventListener('click', unlockOnce, { once: true });
-          window.addEventListener('touchstart', unlockOnce, { once: true });
+          window.addEventListener('click', unlockOnce, { once: true, passive: true });
+          window.addEventListener('touchstart', unlockOnce, { once: true, passive: true });
+          window.addEventListener('pointerdown', unlockOnce, { once: true, passive: true });
         }
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', initMusic);
