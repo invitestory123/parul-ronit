@@ -21,7 +21,9 @@ window.WEDDING_DATA = {
   },
 
   verse: {
-    hindi: "॥ ॐ नमः शिवाय, शिव जी सदा सहाय ॥\n॥ ॐ नमः शिवाय, गुरुजी सदा सहाय ॥",
+    gateMantra: "Om Uma Maheshvarabhyam Namah",
+    gateMantraHindi: "॥ ॐ उमामहेश्वराभ्यां नमः ॥",
+    hindi: "॥ ॐ उमामहेश्वराभ्यां नमः ॥\n॥ ॐ नमः शिवाय, शिव जी सदा सहाय ॥\n॥ ॐ नमः शिवाय, गुरुजी सदा सहाय ॥",
     mantra1: "Om Namah Shivay, Shiv ji Sada Sahay",
     mantra2: "Om Namah Shivay, Guruji Sada Sahay",
     showEnglishHero: false, // Set to true to also display the English mantra under the Shiv-Parvati motif
@@ -74,7 +76,7 @@ window.WEDDING_DATA = {
     },
   ],
 
-  familyNote: "With love, the Uniyal & Bambotra families",
+  familyNote: "With love, the Bambotra and Uniyal families",
 
   images: {
     couple: "./editable/assets/couple.png",
