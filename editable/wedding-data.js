@@ -22,7 +22,7 @@ window.WEDDING_DATA = {
 
   verse: {
     gateMantra: "Om Uma Maheshvarabhyam Namah",
-    gateMantraHindi: "॥ ॐ उमामहेश्वराभ्यां नमः ॥",
+    gateMantraHindi: false, // Set to "॥ ॐ उमामहेश्वराभ्यां नमः ॥" if Sanskrit Devanagari script is also desired on the cover gate
     hindi: "॥ ॐ उमामहेश्वराभ्यां नमः ॥\n॥ ॐ नमः शिवाय, शिव जी सदा सहाय ॥\n॥ ॐ नमः शिवाय, गुरुजी सदा सहाय ॥",
     mantra1: "Om Namah Shivay, Shiv ji Sada Sahay",
     mantra2: "Om Namah Shivay, Guruji Sada Sahay",
@@ -41,8 +41,8 @@ window.WEDDING_DATA = {
   },
 
   music: {
-    src: "./editable/assets/bgm.mp3",
-    title: "Sacred Wedding Music",
+    src: "./editable/assets/bgm.mp3?v=3",
+    title: "Mangalayam — Saathiya (A.R. Rahman)",
     autoplay: true,
   },
 
