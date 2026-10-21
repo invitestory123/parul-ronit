@@ -24,9 +24,7 @@ window.WEDDING_DATA = {
   verse: {
     gateMantra: false, // "Om Uma Maheshvarabhyam Namah" removed
     gateMantraHindi: false, // Set to "॥ ॐ उमामहेश्वराभ्यां नमः ॥" if Sanskrit Devanagari script is also desired on the cover gate
-    hindi: "॥ ॐ उमामहेश्वराभ्यां नमः ॥\n॥ ॐ नमः शिवाय, शिव जी सदा सहाय ॥\n॥ ॐ नमः शिवाय, गुरुजी सदा सहाय ॥",
-    mantra1: "॥ ॐ नमः शिवाय, शिव जी सदा सहाय ॥",
-    mantra2: "॥ ॐ नमः शिवाय, गुरुजी सदा सहाय ॥",
+    hindi: "॥ ॐ उमामहेश्वराभ्यां नमः ॥",
     showEnglishHero: false, // Set to true to also display the English mantra under the Shiv-Parvati motif
     text: "Together with their families, Parul & Ronit invite you to celebrate their wedding and shower your blessings on their sacred new beginning.",
   },
