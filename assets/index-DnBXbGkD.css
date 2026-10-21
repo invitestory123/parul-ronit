@@ -467,3 +467,39 @@ footer p.font-script {
   line-height: 1.35 !important;
 }
 
+/* Invite Screen Sacred Mantra Hindi Styling */
+.invite-mantra-container {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  text-align: center !important;
+  margin-bottom: 0.25rem !important;
+}
+
+.invite-mantra-hindi {
+  font-family: 'Rozha One', 'Noto Serif Devanagari', 'Martel', serif !important;
+  font-size: clamp(1.02rem, 4.2vw, 1.32rem) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  line-height: 1.55 !important;
+  color: #ffd978 !important;
+  text-shadow: 0 0 16px rgba(217, 164, 65, 0.8), 0 2px 6px rgba(0, 0, 0, 0.95) !important;
+  display: block !important;
+}
+
+/* Tagline Under Ronit's Name */
+.hero-subtitle-tagline {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: clamp(1.05rem, 4.2vw, 1.35rem) !important;
+  font-style: italic !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  color: #ffd978 !important;
+  text-shadow: 0 0 16px rgba(217, 164, 65, 0.75), 0 2px 6px rgba(0, 0, 0, 0.95) !important;
+  margin-top: 0.35rem !important;
+  margin-bottom: 0.4rem !important;
+  text-align: center !important;
+  display: block !important;
+  line-height: 1.35 !important;
+}

@@ -12,6 +12,7 @@ window.WEDDING_DATA = {
     brideParents: "D/o Smt. Kirti Bambotra & Late Sh. Babulal Bambotra",
     groomParents: "Son of Smt. Neeta Uniyal & Sh. Yamuna Prasad Uniyal",
     hashtag: "#Parnit",
+    tagline: "“Beginning of a happily ever after”",
   },
 
   wedding: {
@@ -21,11 +22,11 @@ window.WEDDING_DATA = {
   },
 
   verse: {
-    gateMantra: "Om Uma Maheshvarabhyam Namah",
+    gateMantra: false, // "Om Uma Maheshvarabhyam Namah" removed
     gateMantraHindi: false, // Set to "॥ ॐ उमामहेश्वराभ्यां नमः ॥" if Sanskrit Devanagari script is also desired on the cover gate
     hindi: "॥ ॐ उमामहेश्वराभ्यां नमः ॥\n॥ ॐ नमः शिवाय, शिव जी सदा सहाय ॥\n॥ ॐ नमः शिवाय, गुरुजी सदा सहाय ॥",
-    mantra1: "Om Namah Shivay, Shiv ji Sada Sahay",
-    mantra2: "Om Namah Shivay, Guruji Sada Sahay",
+    mantra1: "॥ ॐ नमः शिवाय, शिव जी सदा सहाय ॥",
+    mantra2: "॥ ॐ नमः शिवाय, गुरुजी सदा सहाय ॥",
     showEnglishHero: false, // Set to true to also display the English mantra under the Shiv-Parvati motif
     text: "Together with their families, Parul & Ronit invite you to celebrate their wedding and shower your blessings on their sacred new beginning.",
   },
