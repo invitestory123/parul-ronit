@@ -13,18 +13,18 @@
     <meta property="og:url" content="https://parul-weds-ronit.inviteby.top/" />
     <meta property="og:title" content="Parul & Ronit — Where Two Stories Become One" />
     <meta property="og:description" content="From shared smiles to a lifelong promise. Join Parul & Ronit as they celebrate love, family, and a heartfelt new beginning in Delhi." />
-    <meta property="og:image" content="https://parul-weds-ronit.inviteby.top/editable/assets/og-image.png?v=3" />
-    <meta property="og:image:secure_url" content="https://parul-weds-ronit.inviteby.top/editable/assets/og-image.png?v=3" />
+    <meta property="og:image" content="https://parul-weds-ronit.inviteby.top/editable/assets/og-image.png?v=4" />
+    <meta property="og:image:secure_url" content="https://parul-weds-ronit.inviteby.top/editable/assets/og-image.png?v=4" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Royal bordered wedding poster featuring Parul & Ronit in elegant gold calligraphy on rich burgundy velvet" />
-    <link rel="image_src" href="https://parul-weds-ronit.inviteby.top/editable/assets/og-image.png?v=3" />
+    <meta property="og:image:alt" content="Parul & Ronit sharing a warm, candid moment together under the autumn golden hour trees" />
+    <link rel="image_src" href="https://parul-weds-ronit.inviteby.top/editable/assets/og-image.png?v=4" />
     <meta property="og:logo" content="https://parul-weds-ronit.inviteby.top/editable/assets/mandala.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Parul & Ronit — Where Two Stories Become One" />
     <meta name="twitter:description" content="From shared smiles to a lifelong promise. Join Parul & Ronit as they celebrate love, family, and a heartfelt new beginning in Delhi." />
-    <meta name="twitter:image" content="https://parul-weds-ronit.inviteby.top/editable/assets/og-image.png?v=3" />
+    <meta name="twitter:image" content="https://parul-weds-ronit.inviteby.top/editable/assets/og-image.png?v=4" />
     <!-- ▲▲ Social Link Preview ▲▲ -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -58,7 +58,10 @@
           btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle><path d="M12 2a10 10 0 0 1 10 10"></path></svg>';
           document.body.appendChild(btn);
 
+          var userManuallyPaused = false;
+
           function playAudio() {
+            if (userManuallyPaused) return;
             var p = audio.play();
             if (p && p.then) {
               p.then(function() {
@@ -77,32 +80,55 @@
           btn.addEventListener('click', function(e) {
             e.stopPropagation();
             if (audio.paused) {
+              userManuallyPaused = false;
               playAudio();
             } else {
+              userManuallyPaused = true;
               pauseAudio();
             }
           });
 
           window.__playWeddingMusic = function() {
             if (data.music && data.music.autoplay !== false) {
+              userManuallyPaused = false;
               playAudio();
             }
           };
 
-          // Also allow any first user touch/click/pointer on page to unlock audio
-          var unlockOnce = function() {
-            if (window.__weddingMusicUnlocked) return;
-            window.__weddingMusicUnlocked = true;
-            if (audio.paused && data.music.autoplay !== false) {
+          // 1. Attempt immediate autoplay when page loads
+          if (data.music && data.music.autoplay !== false) {
+            playAudio();
+          }
+
+          // 2. Trigger on first user interaction anywhere on screen (satisfies strict browser autoplay gesture policy)
+          var unlockEvents = ['click', 'touchstart', 'touchend', 'pointerdown', 'mousedown', 'keydown', 'scroll', 'wheel'];
+          var unlockHandler = function() {
+            if (!userManuallyPaused && audio.paused && data.music && data.music.autoplay !== false) {
               playAudio();
             }
-            window.removeEventListener('click', unlockOnce);
-            window.removeEventListener('touchstart', unlockOnce);
-            window.removeEventListener('pointerdown', unlockOnce);
+            unlockEvents.forEach(function(ev) {
+              window.removeEventListener(ev, unlockHandler, true);
+              document.removeEventListener(ev, unlockHandler, true);
+            });
           };
-          window.addEventListener('click', unlockOnce, { once: true, passive: true });
-          window.addEventListener('touchstart', unlockOnce, { once: true, passive: true });
-          window.addEventListener('pointerdown', unlockOnce, { once: true, passive: true });
+
+          unlockEvents.forEach(function(ev) {
+            window.addEventListener(ev, unlockHandler, { capture: true, passive: true });
+            document.addEventListener(ev, unlockHandler, { capture: true, passive: true });
+          });
+
+          // 3. Additional triggers on full window load & visibility change
+          window.addEventListener('load', function() {
+            if (!userManuallyPaused && audio.paused && data.music && data.music.autoplay !== false) {
+              playAudio();
+            }
+          });
+
+          document.addEventListener('visibilitychange', function() {
+            if (!document.hidden && !userManuallyPaused && audio.paused && data.music && data.music.autoplay !== false) {
+              playAudio();
+            }
+          });
         }
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', initMusic);
