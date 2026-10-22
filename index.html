@@ -39,14 +39,29 @@
     <link rel="stylesheet" crossorigin href="assets/index-DnBXbGkD.css?v=5">
     <script>
       (function() {
+        // Pre-declare global hook immediately so React components can call it anytime
+        window.__playWeddingMusic = function() {
+          if (window.__triggerWeddingMusic) {
+            window.__triggerWeddingMusic();
+          }
+        };
+
         function initMusic() {
           var data = window.WEDDING_DATA;
           if (!data || !data.music || !data.music.src) return;
+
           var audio = document.createElement('audio');
           audio.id = 'weddingBgm';
-          audio.src = data.music.src;
+          var resolvedSrc = data.music.src;
+          try {
+            resolvedSrc = new URL(data.music.src, window.location.href).href;
+          } catch(e) {}
+          audio.src = resolvedSrc;
           audio.loop = true;
           audio.preload = 'auto';
+          audio.setAttribute('playsinline', '');
+          audio.setAttribute('webkit-playsinline', '');
+          audio.volume = 1.0;
           document.body.appendChild(audio);
 
           var btn = document.createElement('button');
@@ -59,22 +74,56 @@
           document.body.appendChild(btn);
 
           var userManuallyPaused = false;
+          var hasUnlocked = false;
 
-          function playAudio() {
-            if (userManuallyPaused) return;
-            var p = audio.play();
-            if (p && p.then) {
-              p.then(function() {
-                btn.classList.add('playing');
-              }).catch(function(err) {
-                console.log('Audio autoplay awaiting user interaction');
-              });
+          function updatePlayState(isPlaying) {
+            if (isPlaying) {
+              btn.classList.add('playing');
+            } else {
+              btn.classList.remove('playing');
             }
           }
 
+          audio.addEventListener('play', function() {
+            hasUnlocked = true;
+            updatePlayState(true);
+            detachUnlockListeners();
+          });
+
+          audio.addEventListener('pause', function() {
+            if (userManuallyPaused) {
+              updatePlayState(false);
+            }
+          });
+
+          audio.addEventListener('ended', function() {
+            if (!userManuallyPaused) {
+              audio.currentTime = 0;
+              audio.play().catch(function() {});
+            }
+          });
+
+          function playAudio() {
+            if (userManuallyPaused) return;
+            try {
+              var p = audio.play();
+              if (p && p.then) {
+                p.then(function() {
+                  hasUnlocked = true;
+                  updatePlayState(true);
+                  detachUnlockListeners();
+                }).catch(function(err) {
+                  // Keep listeners active waiting for user gesture
+                });
+              }
+            } catch(e) {}
+          }
+
           function pauseAudio() {
-            audio.pause();
-            btn.classList.remove('playing');
+            try {
+              audio.pause();
+            } catch(e) {}
+            updatePlayState(false);
           }
 
           btn.addEventListener('click', function(e) {
@@ -88,38 +137,54 @@
             }
           });
 
-          window.__playWeddingMusic = function() {
+          window.__triggerWeddingMusic = function() {
             if (data.music && data.music.autoplay !== false) {
               userManuallyPaused = false;
               playAudio();
             }
           };
 
-          // 1. Attempt immediate autoplay when page loads
+          // 1. Immediate play attempt when opening the link
           if (data.music && data.music.autoplay !== false) {
             playAudio();
           }
 
-          // 2. Trigger on first user interaction anywhere on screen (satisfies strict browser autoplay gesture policy)
-          var unlockEvents = ['click', 'touchstart', 'touchend', 'pointerdown', 'mousedown', 'keydown', 'scroll', 'wheel'];
-          var unlockHandler = function() {
-            if (!userManuallyPaused && audio.paused && data.music && data.music.autoplay !== false) {
+          // 2. Gesture unlock listener on all interaction events
+          var unlockEvents = ['click', 'touchstart', 'touchend', 'pointerdown', 'mousedown', 'keydown'];
+          function handleUserGesture(e) {
+            if (hasUnlocked || userManuallyPaused) return;
+            if (data.music && data.music.autoplay !== false) {
               playAudio();
             }
+          }
+
+          function detachUnlockListeners() {
             unlockEvents.forEach(function(ev) {
-              window.removeEventListener(ev, unlockHandler, true);
-              document.removeEventListener(ev, unlockHandler, true);
+              window.removeEventListener(ev, handleUserGesture, true);
+              document.removeEventListener(ev, handleUserGesture, true);
             });
-          };
+          }
 
           unlockEvents.forEach(function(ev) {
-            window.addEventListener(ev, unlockHandler, { capture: true, passive: true });
-            document.addEventListener(ev, unlockHandler, { capture: true, passive: true });
+            window.addEventListener(ev, handleUserGesture, { capture: true, passive: true });
+            document.addEventListener(ev, handleUserGesture, { capture: true, passive: true });
           });
 
-          // 3. Additional triggers on full window load & visibility change
+          // 3. Audio load & page visibility triggers
+          audio.addEventListener('canplay', function() {
+            if (!hasUnlocked && !userManuallyPaused && data.music && data.music.autoplay !== false) {
+              playAudio();
+            }
+          });
+
           window.addEventListener('load', function() {
-            if (!userManuallyPaused && audio.paused && data.music && data.music.autoplay !== false) {
+            if (!hasUnlocked && !userManuallyPaused && data.music && data.music.autoplay !== false) {
+              playAudio();
+            }
+          });
+
+          window.addEventListener('pageshow', function() {
+            if (!hasUnlocked && !userManuallyPaused && data.music && data.music.autoplay !== false) {
               playAudio();
             }
           });
@@ -130,6 +195,7 @@
             }
           });
         }
+
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', initMusic);
         } else {
